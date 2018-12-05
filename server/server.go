@@ -9,7 +9,6 @@ type Result struct {
 }
 
 func getSummary(w http.ResponseWriter, r *http.Request) {
-	enableCors(&w)
 
 	message := r.URL.Query().Get("data")	
 
@@ -23,15 +22,12 @@ if err != nil {
 }
 var result Result
 resp.JSON(&result)
-	w.Write([]byte(result.Text))
+var data = []]byte(result.Text)
+	w.Write(data)
   }
   func main() {
-	http.HandleFunc("/", getSummary)
+	http.HandleFunc("/api/getSummary", getSummary)
 	if err := http.ListenAndServe(":8080", nil); err != nil {
 	  panic(err)
 	}
-}
-
-func enableCors(w *http.ResponseWriter) {
-	(*w).Header().Set("Access-Control-Allow-Origin", "*")
 }

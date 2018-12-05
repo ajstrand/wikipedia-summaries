@@ -2,21 +2,41 @@ import React, { useState } from "react";
 import axios from 'axios';
 import Button from '@material-ui/core/Button';
 import Input from "@material-ui/core/Input";
-import { FormHelperText } from "@material-ui/core";
+import { withStyles} from '@material-ui/core/styles';
 import styled from "styled-components";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 
-const styles = {
+const styles = (theme) => ({
     cardStyles :{
-        width:"30%",
-        backgroundColor:'#00BCD4'
+        [theme.breakpoints.down('sm')]: {
+            width:"90%",
+        },
+          [theme.breakpoints.up('md')]: {
+            width:"50%",
+        },
+          [theme.breakpoints.up('lg')]: {
+            width:"30%",
+        },
+        backgroundColor: 'palevioletred',
     },
+    input: {
+        margin:'1em',
+        borderBottomColor:'#ffffff'
+    },
+      cssUnderline: {
+        '&:after': {
+          borderBottomColor: '#ffffff',
+        },
+      },
     button: {
+        [theme.breakpoints.down('sm')]: {
+            width:"70%",
+        },
         color:'#ffffff',
         backgroundColor:'#00BCD4'
     }
-  };
+  });
 
 const App = styled.div `
     background-color:#607D8B;
@@ -27,12 +47,13 @@ const App = styled.div `
     height:100%;
 `;
 
-export default function Summary() {
-    const [summary, setResult] = useState(null);
+function Summary(props) {
+    const { classes } = props;
+    const [summary, setResult] = useState("enter a term to see a summary from wikipedia");
     const [query, setQuery] = useState(null);
 
     const data = () => {
-        var url = `http://localhost:8080/getSummary?data=${query}`;
+        var url = `/api/getSummary?data=${query}`;
         axios.get(url)
             .then(res => {
                 let data = null;
@@ -47,13 +68,19 @@ export default function Summary() {
     }
     return (
         <App>
-            <Button variant="contained" style={{...styles.button}} onClick={data}>get summary from wikipedia</Button>
-            <Input style={{...styles.input}} onKeyPress={(e) => {
+            <Button variant="contained" classes={{root:classes.button}} onClick={data}>get summary from wikipedia</Button>
+            <Input
+            classes={{
+                root:classes.input,
+                underline: classes.cssUnderline,
+              }}
+    
+        onKeyPress={(e) => {
                 if (e.charCode === 13) {
                     data();
                 }
             }} onChange={(e) => { setQuery(e.target.value) }}></Input>
-            <Card style={{...styles.cardStyles}}>
+            <Card classes={{root:classes.cardStyles}}>
                 <CardContent>
                     {summary}
                 </CardContent>
@@ -61,3 +88,5 @@ export default function Summary() {
         </App>
     )
 }
+
+export default withStyles(styles)(Summary);
