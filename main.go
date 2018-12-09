@@ -3,6 +3,7 @@ package main
 import "log"
 import "github.com/levigross/grequests"
 import "net/http"
+import "os"
 
 type Result struct {
     Text   string        `json:"extract"`
@@ -26,8 +27,14 @@ var data = []byte(result.Text)
 	w.Write(data)
   }
   func main() {
+
+	port := os.Getenv("PORT")
+
+	if port == "" {
+		log.Fatal("$PORT must be set")
+	}
 	http.HandleFunc("/api/getSummary", getSummary)
-	if err := http.ListenAndServe(":8080", nil); err != nil {
+	if err := http.ListenAndServe(port, nil); err != nil {
 	  panic(err)
 	}
 }
