@@ -1,0 +1,25 @@
+{
+	"comment": "",
+	"ignore": "test",
+	"package": [
+		{
+			"checksumSHA1": "p3IB18uJRs4dL2K5yx24MrLYE9A=",
+			"path": "github.com/google/go-querystring/query",
+			"revision": "44c6ddd0a2342c386950e880b658017258da92fc",
+			"revisionTime": "2018-09-16T13:16:37Z"
+		},
+		{
+			"checksumSHA1": "ThbSPF5rF9tpUeyAEIDtAzePfrA=",
+			"path": "github.com/levigross/grequests",
+			"revision": "f3f67e7783bbebcabeb248816bf5ff2bf90b47ad",
+			"revisionTime": "2018-11-23T01:47:46Z"
+		},
+		{
+			"checksumSHA1": "t43qYhxyCGEe6Oi5VhFDxTYSzZE=",
+			"path": "golang.org/x/net/publicsuffix",
+			"revision": "351d144fa1fc0bd934e2408202be0c29f25e35a0",
+			"revisionTime": "2018-11-30T00:35:12Z"
+		}
+	],
+	"rootPath": "github.com/ajstrand/wikipedia-summaries"
+}
