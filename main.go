@@ -34,7 +34,7 @@ var data = []byte(result.Text)
 		log.Fatal("$PORT must be set")
 	}
 	http.HandleFunc("/api/getSummary", getSummary)
-	if err := http.ListenAndServe(port, nil); err != nil {
+	if err := http.ListenAndServe(":" + port, nil); err != nil {
 	  panic(err)
 	}
 }
