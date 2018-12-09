@@ -7,6 +7,7 @@ import styled from "styled-components";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 
+//TODO clean up styles for app
 const styles = (theme) => ({
     cardStyles :{
         [theme.breakpoints.down('sm')]: {
