@@ -24,6 +24,7 @@ const styles = (theme) => ({
     },
     input: {
         margin:'1em',
+        color:'#ffffff',
         borderBottomColor:'#ffffff'
     },
       cssUnderline: {
@@ -40,6 +41,12 @@ const styles = (theme) => ({
     }
   });
 
+  const InstP = styled.p `
+    width:37%;
+    color:#ffffff;
+    margin: 1em;
+  `;
+
 const App = styled.div `
     background-color:#607D8B;
     display:flex;
@@ -51,8 +58,13 @@ const App = styled.div `
 
 function Summary(props) {
     const { classes } = props;
-    const [summary, setResult] = useState("enter a term to see a summary from wikipedia");
+    const [summary, setResult] = useState(null);
     const [query, setQuery] = useState(null);
+
+    const inst = `Get a summary on a particular topic by entering a search term in the in put field below. 
+    You can press enter after typing in the input box or press the "Get Summary" button to see the results.`;
+
+    const buttonText = `Get a summary from Wikipedia.`;
 
     const data = () => {
         var url = `/api/getSummary?data=${query}`;
@@ -60,7 +72,8 @@ function Summary(props) {
             .then(res => {
                 let data = null;
                 if (res.data === "") {
-                    data = "please enter a valid search term";
+                    data = `You may have entered a term that doesn't exist on Wikipedia. 
+                    Please enter a valid search term or double check that what you entered was spelled correctly.`;
                 }
                 else {
                     data = res.data;
@@ -70,7 +83,8 @@ function Summary(props) {
     }
     return (
         <App>
-            <Button variant="contained" classes={{root:classes.button}} onClick={data}>get summary from wikipedia</Button>
+            <InstP>{inst}</InstP>
+            <Button variant="contained" classes={{root:classes.button}} onClick={data}>{buttonText}</Button>
             <Input
             classes={{
                 root:classes.input,
@@ -82,11 +96,12 @@ function Summary(props) {
                     data();
                 }
             }} onChange={(e) => { setQuery(e.target.value) }}></Input>
-            <Card classes={{root:classes.cardStyles}}>
+            {summary !== null ? <Card classes={{root:classes.cardStyles}}>
                 <CardContent>
                     {summary}
                 </CardContent>
-            </Card>
+            </Card>: null}
+            
         </App>
     )
 }
