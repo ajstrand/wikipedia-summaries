@@ -34,6 +34,9 @@ var data = []byte(result.Text)
 		log.Fatal("$PORT must be set")
 	}
 	http.HandleFunc("/api/getSummary", getSummary)
+	dirName := "./dist"
+	http.Handle("/", http.FileServer(http.Dir(dirName)))
+	log.Println("Server started: http://localhost:" + port)
 	if err := http.ListenAndServe(":" + port, nil); err != nil {
 	  panic(err)
 	}
