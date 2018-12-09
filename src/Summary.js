@@ -20,7 +20,7 @@ const styles = (theme) => ({
             width:"30%",
         },
         backgroundColor: 'palevioletred',
-        color:'papayawhip!important'
+        color:'papayawhip'
     },
     input: {
         margin:'1em',
