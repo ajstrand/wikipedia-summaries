@@ -21,6 +21,8 @@
 			"revisionTime": "2018-11-30T00:35:12Z"
 		}
 	],
-	"heroku.goVersion":"go1.11.2",
+	"heroku":{
+		"goVersion":"go1.11.2"
+	},
 	"rootPath": "github.com/ajstrand/wikipedia-summaries"
 }
