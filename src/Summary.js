@@ -73,7 +73,8 @@ function Summary(props) {
 
     const data = () => {
         var url = `/api/getSummary?data=${query}`;
-        axios.get(url)
+        var temp = 'http://localhost:8080' + url;
+        axios.get(temp)
             .then(res => {
                 let data = null;
                 if (res.data === "") {
