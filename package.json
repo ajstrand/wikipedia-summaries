@@ -18,7 +18,7 @@
     "react-dom": "^16.7.0-alpha.0",
     "styled-components": "^4.1.2",
     "webpack": "^4.26.1",
-    "webpack-cli": "^3.1.2",
+    "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.3"
   },
   "devDependencies": {
